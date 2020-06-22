@@ -1,33 +1,34 @@
 import React from "react";
-import { Layout, Menu } from "antd";
+import { Input, Row, Col, Typography } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 
-const { Header, Content, Footer } = Layout;
+const { Title, Paragraph } = Typography;
 
-const Home = () => (
-  <Layout>
-    <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
-      <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-        <Menu.Item key="1">Home</Menu.Item>
-        <Menu.Item key="2">About</Menu.Item>
-        <Menu.Item key="3">Terms</Menu.Item>
-      </Menu>
-    </Header>
-    <Content
-      className="site-layout"
-      style={{ padding: "0 50px", marginTop: 64 }}
-    >
-      <div
-        className="site-layout-background"
-        style={{ padding: 24, minHeight: "80vh" }}
-      >
-        Content
-      </div>
-    </Content>
-    <Footer style={{ textAlign: "center" }}>
-      React i18n Demo ©2018 Created by Open Source
-    </Footer>
-  </Layout>
-);
+const Home = () => {
+  return (
+    <>
+      <Row>
+        <Col span={12} offset={6}>
+          <Typography>
+            <Title>Github user search</Title>
+            <Paragraph>
+              Welcome to Github user search. The app allows you to query github
+              user API. Get started by typing in your search below.
+            </Paragraph>
+          </Typography>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={12} offset={6}>
+          <Input
+            size="large"
+            placeholder="Search for a Github user..."
+            prefix={<UserOutlined />}
+          />
+        </Col>
+      </Row>
+    </>
+  );
+};
 
 export default Home;
