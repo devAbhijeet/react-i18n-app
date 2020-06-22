@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import "antd/dist/antd.css";
 import { Spin } from "antd";
 import { useTranslation } from "react-i18next";
 import { Router } from "react-router-dom";
@@ -23,9 +24,5 @@ export default function App() {
         </TranslationServiceProvider>
       )}
     </>
-    // <div className="App">
-    //   <h1>Hello CodeSandbox</h1>
-    //   <h2>Start editing to see some magic happen!</h2>
-    // </div>
   );
 }
