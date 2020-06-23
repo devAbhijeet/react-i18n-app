@@ -12,7 +12,7 @@ import Terms from "../components/Terms";
 const { SubMenu } = Menu;
 const { Header, Content, Footer } = Layout;
 const BrowserHistory = createHashHistory();
-//https://api.github.com/users/devAbhijeet
+
 const AppRoutes = props => {
   const locationPath = props && props.location && props.location.pathname;
   useEffect(() => {
@@ -39,9 +39,6 @@ const AppRoutes = props => {
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
               <Menu.Item key="1" onClick={() => redirect("")}>
                 Home
-              </Menu.Item>
-              <Menu.Item key="2" onClick={() => redirect("about")}>
-                About
               </Menu.Item>
               <Menu.Item key="3" onClick={() => redirect("terms")}>
                 Terms
