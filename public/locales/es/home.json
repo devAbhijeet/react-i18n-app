@@ -1,0 +1,15 @@
+{
+  "header": "Búsqueda de usuario de Github",
+  "subHeader": "Bienvenido a la búsqueda de usuarios de Github. La aplicación le permite consultar la API de usuario de github. Comience escribiendo su consulta a continuación.",
+  "inputPlaceholder": "Buscar una usuaria de Github ...",
+  "stats": {
+    "repos": "repositorio",
+    "gists": "Lo esencial",
+    "followers": "Seguidoras",
+    "following": "Siguiendo"
+  },
+  "error": {
+    "header": "Error al recuperar el usuario",
+    "description": "Por favor ingrese un nombre de usuario válido"
+  }
+}

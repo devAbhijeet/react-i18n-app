@@ -11,6 +11,7 @@ import {
   notification
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;
@@ -20,11 +21,12 @@ const Home = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const API_URL = "https://api.github.com/users";
+  const { t } = useTranslation("home");
 
   const openNotificationWithIcon = type => {
     notification[type]({
-      message: "Error Fetching user",
-      description: "Please enter a valid username"
+      message: t("error.header"),
+      description: t("error.description")
     });
   };
 
@@ -40,12 +42,10 @@ const Home = () => {
       fetch(`${API_URL}/${userName}`)
         .then(res => res.json())
         .then(data => {
-          console.log("data is ", data);
           setIsFetching(false);
           setUserInfo(data);
         })
         .catch(err => {
-          console.log(err);
           openNotificationWithIcon("error");
           setIsFetching(false);
           setUserInfo(null);
@@ -58,11 +58,8 @@ const Home = () => {
       <Row>
         <Col span={12} offset={6}>
           <Typography>
-            <Title>Github user search</Title>
-            <Paragraph>
-              Welcome to Github user search. The app allows you to query github
-              user API. Get started by typing in your query below.
-            </Paragraph>
+            <Title>{t("header")}</Title>
+            <Paragraph>{t("subHeader")}</Paragraph>
           </Typography>
         </Col>
       </Row>
@@ -71,7 +68,7 @@ const Home = () => {
           <Input
             allowClear
             size="large"
-            placeholder="Search for a Github user..."
+            placeholder={t("inputPlaceholder")}
             onChange={handleInputChange}
             onPressEnter={handleInputSubmit}
             prefix={<UserOutlined />}
@@ -92,13 +89,13 @@ const Home = () => {
                 <Row gutter={16} style={{ marginTop: 20, marginLeft: 40 }}>
                   <Col span={12}>
                     <Statistic
-                      title="Repos"
+                      title={t("stats.repos")}
                       value={userInfo && userInfo.public_repos}
                     />
                   </Col>
                   <Col span={12}>
                     <Statistic
-                      title="Gists"
+                      title={t("stats.gists")}
                       value={userInfo && userInfo.public_gists}
                     />
                   </Col>
@@ -106,13 +103,13 @@ const Home = () => {
                 <Row gutter={16} style={{ marginLeft: 40 }}>
                   <Col span={12}>
                     <Statistic
-                      title="Followers"
+                      title={t("stats.followers")}
                       value={userInfo && userInfo.followers}
                     />
                   </Col>
                   <Col span={12}>
                     <Statistic
-                      title="Following"
+                      title={t("stats.following")}
                       value={userInfo && userInfo.following}
                     />
                   </Col>

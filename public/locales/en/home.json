@@ -1,0 +1,15 @@
+{
+  "header": "Github user search",
+  "subHeader": "Welcome to Github user search. The app allows you to query github user API.Get started by typing in your query below.",
+  "inputPlaceholder": "Search for a Github user...",
+  "stats": {
+    "repos": "Repos",
+    "gists": "Gists",
+    "followers": "Followers",
+    "following": "Following"
+  },
+  "error": {
+    "header": "Error Fetching user",
+    "description": "Please enter a valid username"
+  }
+}

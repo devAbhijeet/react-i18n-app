@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { createHashHistory } from "history";
+import { useTranslation } from "react-i18next";
 import { Layout, Menu, Spin } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-import { withRouter, Route, Switch } from "react-router-dom";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { TranslationServiceHelper } from "../HOC/TranslationServiceHelper";
 import { compose } from "redux";
 import Home from "../components/Home";
@@ -15,10 +16,11 @@ const BrowserHistory = createHashHistory();
 
 const AppRoutes = props => {
   const locationPath = props && props.location && props.location.pathname;
+  const { t } = useTranslation("common");
   useEffect(() => {
     const pathNameTerms = locationPath.includes("/terms");
     const pathNameHome = locationPath.includes("/home");
-    if (pathNameTerms && !props.hasNameSpaceLoaded("terms")) {
+    if (pathNameTerms) {
       props.loadNameSpaces("terms");
     } else if (pathNameHome) {
       props.loadNameSpaces("home");
@@ -29,6 +31,11 @@ const AppRoutes = props => {
     BrowserHistory.replace(`/${path}`);
   };
 
+  const handleLanguageChange = locale => {
+    const { setEntityPreferredLocale } = props;
+    setEntityPreferredLocale(locale);
+  };
+
   return (
     <>
       {!props.isTReady && <Spin className="suspense-spinner" size="large" />}
@@ -37,15 +44,27 @@ const AppRoutes = props => {
           <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
             <div className="logo" />
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-              <Menu.Item key="1" onClick={() => redirect("")}>
-                Home
+              <Menu.Item key="1" onClick={() => redirect("home")}>
+                {t("nav.home")}
               </Menu.Item>
               <Menu.Item key="3" onClick={() => redirect("terms")}>
-                Terms
+                {t("nav.terms")}
               </Menu.Item>
-              <SubMenu key="sub2" icon={<DownOutlined />} title="Language">
-                <Menu.Item key="6">English</Menu.Item>
-                <Menu.Item key="8">Spanish</Menu.Item>
+              <SubMenu
+                key="sub2"
+                icon={<DownOutlined />}
+                title={t("nav.language")}
+              >
+                {props.localeList && props.localeList.length > 0
+                  ? props.localeList.map(({ id, locale }) => (
+                      <Menu.Item
+                        key={id}
+                        onClick={() => handleLanguageChange(locale)}
+                      >
+                        {locale.toUpperCase()}
+                      </Menu.Item>
+                    ))
+                  : null}
               </SubMenu>
             </Menu>
           </Header>
@@ -58,13 +77,14 @@ const AppRoutes = props => {
               style={{ padding: 24, minHeight: "80vh" }}
             >
               <Switch>
-                <Route exact path="/" component={Home} />
+                <Route exact path="/home" component={Home} />
                 <Route exact path="/terms" component={Terms} />
+                <Redirect exact from="/" to="/home" />
               </Switch>
             </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>
-            React i18n Demo ©2020. This UI is created using Ant Design.
+            {t("footer.copyRight")}
           </Footer>
         </Layout>
       )}

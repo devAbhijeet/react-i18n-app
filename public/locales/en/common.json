@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "home": "Home",
+    "terms": "Terms",
+    "language": "Language"
+  },
+  "footer": {
+    "copyRight": "React i18n Demo ©2020. This UI is created using Ant Design."
+  }
+}

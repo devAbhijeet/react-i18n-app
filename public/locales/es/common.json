@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "home": "Hogar",
+    "terms": "Condiciones",
+    "language": "Idioma"
+  },
+  "footer": {
+    "copyRight": "Reaccionar i18n Demo © 2020. Esta interfaz de usuario se crea con Ant Design."
+  }
+}
