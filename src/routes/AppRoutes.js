@@ -12,7 +12,7 @@ import Terms from "../components/Terms";
 const { SubMenu } = Menu;
 const { Header, Content, Footer } = Layout;
 const BrowserHistory = createHashHistory();
-
+//https://api.github.com/users/devAbhijeet
 const AppRoutes = props => {
   const locationPath = props && props.location && props.location.pathname;
   useEffect(() => {
