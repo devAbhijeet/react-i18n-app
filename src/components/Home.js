@@ -13,7 +13,7 @@ const Home = () => {
             <Title>Github user search</Title>
             <Paragraph>
               Welcome to Github user search. The app allows you to query github
-              user API. Get started by typing in your search below.
+              user API. Get started by typing in your query below.
             </Paragraph>
           </Typography>
         </Col>
